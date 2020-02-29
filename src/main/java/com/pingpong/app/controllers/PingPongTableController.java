@@ -23,7 +23,6 @@ public class PingPongTableController {
     private final PingPongTableService service;
 
     @GetMapping(value = "/tables")
-
     @ResponseStatus(HttpStatus.OK)
     public Page<PingPongTable> findAll(@RequestParam(value = "page", required = false) Integer page,
                                        @RequestParam(value = "items", required = false) Integer items) {

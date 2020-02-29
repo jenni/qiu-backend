@@ -1,6 +1,5 @@
 package com.pingpong.app.entities;
 
-import com.pingpong.app.models.Coordinates;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,6 +11,7 @@ import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.Set;
 
 import static java.time.Instant.now;
 
@@ -19,35 +19,25 @@ import static java.time.Instant.now;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "ping_pong_tables")
+@Entity(name = "users")
 @TypeDefs({
         @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 })
-public class PingPongTable {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String address;
+    private String email;
 
-    private String city;
+    private String password;
 
-    @Type(type = "jsonb")
-    private Coordinates coordinates;
+    private String profileImage;
 
-    private String description;
+    @Type(type = "jsonb",parameters = {@org.hibernate.annotations.Parameter(name = "listType", value = "java.lang.Integer")})
+    private Set<Integer> starred;
 
-    private String imageUrl;
-
-    private Boolean hasLight;
-
-    private Boolean isIndoor;
-
-    private Boolean isSportsClub;
-
-    private Boolean isBar;
-
-    private Integer createdBy;
+    private Boolean isAdmin;
 
     private Instant updatedAt;
 
