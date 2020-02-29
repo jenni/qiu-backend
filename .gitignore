@@ -1,0 +1,26 @@
+embedded_pg_cache/
+
+# Gradle files
+.gradle
+cache
+out
+
+# IntelliJ Files
+.idea/
+*.iml
+HELP.md
+
+# Java sources
+build
+
+# Exclude log files
+log
+
+# MacOS generated files
+.DS_Store
+
+# ignore assemble artifact
+pingpongapp-*.jar
+
+# docs
+docs
