@@ -1,5 +1,6 @@
 package com.pingpong.app.controllers;
 
+import com.google.maps.errors.ApiException;
 import com.pingpong.app.entities.PingPongTable;
 import com.pingpong.app.services.PingPongTableService;
 import lombok.RequiredArgsConstructor;
@@ -8,10 +9,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
@@ -30,6 +30,12 @@ public class PingPongTableController {
         var pageRequest = buildPageable(page, items);
 
         return service.findAll(pageRequest);
+    }
+
+    @PostMapping(value = "/tables")
+    @ResponseStatus(HttpStatus.OK)
+    public PingPongTable create(@RequestBody PingPongTable pingPongTable) throws InterruptedException, ApiException, IOException {
+        return service.create(pingPongTable);
     }
 
     private Pageable buildPageable(Integer page, Integer items) {

@@ -40,6 +40,8 @@ dependencies {
     compile 'org.hibernate:hibernate-java8'
     compile group: 'org.hibernate', name: 'hibernate-jpamodelgen', version: '5.4.2.Final'
     compile group: 'com.vladmihalcea', name: 'hibernate-types-52', version: '2.9.4'
+
+    compile 'com.google.maps:google-maps-services:0.11.0'
 }
 
 test {

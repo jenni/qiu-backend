@@ -1,5 +1,6 @@
 package com.pingpong.app.entities;
 
+import com.google.maps.model.GeocodingResult;
 import com.pingpong.app.models.Coordinates;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.AllArgsConstructor;
@@ -48,6 +49,9 @@ public class PingPongTable {
     private Boolean isBar;
 
     private Integer createdBy;
+
+    @Type(type = "jsonb")
+    private GeocodingResult[] geoApi;
 
     private Instant updatedAt;
 
