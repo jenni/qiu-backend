@@ -1,6 +1,5 @@
 package com.pingpong.app.controllers;
 
-import com.google.maps.errors.ApiException;
 import com.pingpong.app.entities.PingPongTable;
 import com.pingpong.app.services.PingPongTableService;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
+import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
@@ -34,7 +33,7 @@ public class PingPongTableController {
 
     @PostMapping(value = "/tables")
     @ResponseStatus(HttpStatus.OK)
-    public PingPongTable create(@RequestBody PingPongTable pingPongTable) throws InterruptedException, ApiException, IOException {
+    public PingPongTable create(@Valid @RequestBody PingPongTable pingPongTable) {
         return service.create(pingPongTable);
     }
 
