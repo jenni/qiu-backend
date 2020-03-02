@@ -5,7 +5,7 @@ import static org.springframework.beans.BeanUtils.copyProperties;
 
 public abstract class BaseDto<D, E> {
 
-    public E toEntity(Class<E> entity) {
+    public E to(Class<E> entity) {
         try {
             var instant = entity.getConstructor().newInstance();
             copyProperties(this, instant);
@@ -15,7 +15,7 @@ public abstract class BaseDto<D, E> {
         }
     }
 
-    public D toDto(E instant) {
+    public D from(E instant) {
         try {
             copyProperties(instant, this);
             return (D) this;

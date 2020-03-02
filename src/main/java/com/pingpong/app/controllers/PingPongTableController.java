@@ -35,9 +35,9 @@ public class PingPongTableController {
     @PostMapping(value = "/ping-pong-tables")
     @ResponseStatus(HttpStatus.OK)
     public PingPongTableDto create(@Valid @RequestBody PingPongTableDto dto) {
-        var pingPongTable = service.create(dto.toEntity(PingPongTable.class));
 
-        return new PingPongTableDto().toDto(pingPongTable);
+        var pingPongTable = service.create(dto.to(PingPongTable.class));
+        return new PingPongTableDto().from(pingPongTable);
     }
 
     private Pageable buildPageable(Integer page, Integer items) {
