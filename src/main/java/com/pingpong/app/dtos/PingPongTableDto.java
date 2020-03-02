@@ -8,12 +8,13 @@ import lombok.*;
 import javax.validation.constraints.NotNull;
 
 @EqualsAndHashCode(callSuper = true)
-@Builder
+@Builder(toBuilder = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class PingPongTableDto extends BaseDto<PingPongTable> {
+public class PingPongTableDto extends BaseDto<PingPongTableDto, PingPongTable> {
+
     private Integer id;
     @NotNull
     private String address;

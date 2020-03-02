@@ -18,6 +18,8 @@ public class PingPongTableService {
     }
 
     public PingPongTable create(PingPongTable pingPongTable) {
+        // @todo created_by user_id
+        pingPongTable.setCreatedBy(1);
         return repository.save(pingPongTable);
     }
 

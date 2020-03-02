@@ -1,16 +1,26 @@
 package com.pingpong.app.dtos;
 
-import org.springframework.beans.BeanUtils;
+import static org.springframework.beans.BeanUtils.copyProperties;
 
-public abstract class BaseDto<T> {
 
-    public T toEntity(Class<T> entity) {
+public abstract class BaseDto<D, E> {
+
+    public E toEntity(Class<E> entity) {
         try {
-            var dest = entity.getConstructor().newInstance();
-            BeanUtils.copyProperties(this, dest);
-            return dest;
+            var instant = entity.getConstructor().newInstance();
+            copyProperties(this, instant);
+            return instant;
         } catch (Exception e) {
             throw new RuntimeException("[EntityUtils::toEntity] -> Error mapping dto to entity.", e);
+        }
+    }
+
+    public D toDto(E instant) {
+        try {
+            copyProperties(instant, this);
+            return (D) this;
+        } catch (Exception ex) {
+            throw new RuntimeException("[EntityUtils::toDto] -> Error mapping entity to dto.", ex);
         }
     }
 }
