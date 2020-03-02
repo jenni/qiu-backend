@@ -12,19 +12,12 @@ import org.springframework.stereotype.Service;
 public class PingPongTableService {
 
     private final PingPongTableRepository repository;
-    private final GeoApi geoApi;
 
     public Page<PingPongTable> findAll(Pageable pageable) {
         return repository.findAll(pageable);
     }
 
     public PingPongTable create(PingPongTable pingPongTable) {
-
-        var geocodingResults = geoApi.fetchAddressByCoordinates(pingPongTable.getCoordinates());
-
-        pingPongTable.setCreatedBy(1);
-        pingPongTable.setGeoApi(geocodingResults);
-
         return repository.save(pingPongTable);
     }
 

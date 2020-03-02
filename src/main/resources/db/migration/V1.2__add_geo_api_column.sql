@@ -1,1 +1,0 @@
-ALTER TABLE IF EXISTS ping_pong_tables ADD COLUMN IF NOT EXISTS geo_api jsonb DEFAULT '[]'::jsonb

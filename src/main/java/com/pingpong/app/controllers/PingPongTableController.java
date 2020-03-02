@@ -1,5 +1,6 @@
 package com.pingpong.app.controllers;
 
+import com.pingpong.app.dtos.PingPongTableDto;
 import com.pingpong.app.entities.PingPongTable;
 import com.pingpong.app.services.PingPongTableService;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ public class PingPongTableController {
 
     private final PingPongTableService service;
 
-    @GetMapping(value = "/tables")
+    @GetMapping(value = "/ping-pong-tables")
     @ResponseStatus(HttpStatus.OK)
     public Page<PingPongTable> findAll(@RequestParam(value = "page", required = false) Integer page,
                                        @RequestParam(value = "items", required = false) Integer items) {
@@ -31,10 +32,10 @@ public class PingPongTableController {
         return service.findAll(pageRequest);
     }
 
-    @PostMapping(value = "/tables")
+    @PostMapping(value = "/ping-pong-tables")
     @ResponseStatus(HttpStatus.OK)
-    public PingPongTable create(@Valid @RequestBody PingPongTable pingPongTable) {
-        return service.create(pingPongTable);
+    public PingPongTable create(@Valid @RequestBody PingPongTableDto dto) {
+        return service.create(dto.toEntity(PingPongTable.class));
     }
 
     private Pageable buildPageable(Integer page, Integer items) {
