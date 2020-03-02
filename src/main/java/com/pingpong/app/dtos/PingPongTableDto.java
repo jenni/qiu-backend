@@ -3,7 +3,6 @@ package com.pingpong.app.dtos;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.pingpong.app.entities.PingPongTable;
 import com.pingpong.app.models.Coordinates;
-import com.pingpong.app.utils.BaseDto;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
