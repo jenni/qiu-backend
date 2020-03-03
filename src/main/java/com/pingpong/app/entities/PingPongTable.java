@@ -2,19 +2,14 @@ package com.pingpong.app.entities;
 
 import com.pingpong.app.models.Coordinates;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 
-import javax.persistence.*;
-import java.time.Instant;
+import javax.persistence.Entity;
 
-import static java.time.Instant.now;
-
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Builder
 @AllArgsConstructor
@@ -23,10 +18,7 @@ import static java.time.Instant.now;
 @TypeDefs({
         @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 })
-public class PingPongTable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+public class PingPongTable extends BaseEntity {
 
     private String address;
 
@@ -48,19 +40,4 @@ public class PingPongTable {
     private Boolean isBar;
 
     private Integer createdBy;
-
-    private Instant updatedAt;
-
-    private Instant createdAt;
-
-    @PrePersist
-    public void onPrePersist() {
-        updatedAt = now();
-        createdAt = now();
-    }
-
-    @PreUpdate
-    public void onPreUpdate() {
-        updatedAt = now();
-    }
 }
