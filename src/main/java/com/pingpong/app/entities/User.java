@@ -1,20 +1,15 @@
 package com.pingpong.app.entities;
 
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 
-import javax.persistence.*;
-import java.time.Instant;
+import javax.persistence.Entity;
 import java.util.Set;
 
-import static java.time.Instant.now;
-
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Builder
 @AllArgsConstructor
@@ -23,10 +18,7 @@ import static java.time.Instant.now;
 @TypeDefs({
         @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 })
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+public class User extends BaseEntity {
 
     private String email;
 
@@ -39,18 +31,4 @@ public class User {
 
     private Boolean isAdmin;
 
-    private Instant updatedAt;
-
-    private Instant createdAt;
-
-    @PrePersist
-    public void onPrePersist() {
-        updatedAt = now();
-        createdAt = now();
-    }
-
-    @PreUpdate
-    public void onPreUpdate() {
-        updatedAt = now();
-    }
 }

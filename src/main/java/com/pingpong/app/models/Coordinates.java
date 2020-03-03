@@ -6,11 +6,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
+
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Coordinates {
-    private Double lat;
-    private Double lng;
+
+    @NotNull private Double lat;
+    @NotNull private Double lng;
 }
