@@ -1,4 +1,4 @@
-package com.pingpong.app.models;
+package com.pingpong.app.entities.models;
 
 
 import lombok.AllArgsConstructor;
@@ -13,7 +13,8 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Coordinates {
-
-    @NotNull private Double lat;
-    @NotNull private Double lng;
+    @NotNull
+    private Double lat;
+    @NotNull
+    private Double lng;
 }

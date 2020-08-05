@@ -1,6 +1,6 @@
 package com.pingpong.app.entities;
 
-import com.pingpong.app.models.Coordinates;
+import com.pingpong.app.entities.models.Coordinates;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.*;
 import org.hibernate.annotations.Type;
@@ -20,6 +20,8 @@ import javax.persistence.Entity;
 })
 public class PingPongTable extends BaseEntity {
 
+    private Integer externalId;
+
     private String address;
 
     private String city;
@@ -31,6 +33,8 @@ public class PingPongTable extends BaseEntity {
 
     private String imageUrl;
 
+    private String url;
+
     private Boolean hasLight;
 
     private Boolean isIndoor;
@@ -38,6 +42,4 @@ public class PingPongTable extends BaseEntity {
     private Boolean isSportsClub;
 
     private Boolean isBar;
-
-    private Integer createdBy;
 }
