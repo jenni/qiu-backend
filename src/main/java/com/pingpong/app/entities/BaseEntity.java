@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.time.Instant;
 
 import static java.time.Instant.now;
+import static javax.persistence.GenerationType.IDENTITY;
 
 @Data
 @MappedSuperclass
@@ -16,7 +17,7 @@ import static java.time.Instant.now;
 public abstract class BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private Integer id;
 
     private Instant updatedAt;
@@ -25,8 +26,9 @@ public abstract class BaseEntity {
 
     @PrePersist
     public void onPrePersist() {
-        updatedAt = now();
-        createdAt = now();
+        Instant now = now();
+        updatedAt = now;
+        createdAt = now;
     }
 
     @PreUpdate
